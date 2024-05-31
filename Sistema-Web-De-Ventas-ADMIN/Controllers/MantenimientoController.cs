@@ -6,13 +6,20 @@ using System.Web.Mvc;
 
 namespace Sistema_Web_De_Ventas_ADMIN.Controllers
 {
-    public class HomeController : Controller
+    public class MantenimientoController : Controller
     {
-        public ActionResult Index()
+        // GET: Mantenimiento
+        public ActionResult Categoria()
         {
             return View();
         }
-        public ActionResult Usuarios()
+
+        public ActionResult Marca()
+        {
+            return View();
+        }
+
+        public ActionResult Producto()
         {
             return View();
         }
