@@ -14,7 +14,7 @@ namespace Datos
 {
     public class CD_Usuarios//Clase en donde se trae los datos de la Base de datos
     {
-        public List<Usuario> listar()
+        public List<Usuario> Listar()
         {
             List<Usuario> Lista = new List<Usuario>();
 
@@ -56,10 +56,11 @@ namespace Datos
 
                 }
 
-            }catch
-            {
-                Lista = new List<Usuario>();    
-
+            }catch(Exception ex)
+{
+                // Log the exception
+                Console.WriteLine(ex.Message);
+                Lista = new List<Usuario>();
             }
 
 
