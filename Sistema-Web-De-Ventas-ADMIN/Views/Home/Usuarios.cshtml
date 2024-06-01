@@ -4,5 +4,96 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Usuarios</h2>
+<ol class="breadcrumb mb-4 mt-4">
+    <li class="breadcrumb-item"><a href="index.html">Resumen</a></li>
+    <li class="breadcrumb-item active">Usuarios</li>
+</ol>
+
+
+<div class="card text-center">
+    <div class="card-header">
+        <i class=" fas fa-users me-3"></i> Lista De Usuarios
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-12">
+                <button type="button" class="btn btn-success">Crear Nuevo Usuario</button>
+            </div>
+        </div>
+    </div>
+    <hr />
+    <table id="tabla" class="display cell-border" style="width:100%">
+        <thead>
+            <tr>
+                <th>Nombres</th>
+                <th>Apellidos</th>
+                <th>Email</th>
+                <th>Activo</th>
+                <th>Modificar</th>
+            </tr>
+            
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</div>
+
+@section scripts{
+    <script>
+
+        let datable;
+
+        jQuery.ajax({
+
+           url:' @Url.Action("ListarUsuarios", "Home")',
+            Type: "GET",
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            success: function (Data){
+                console.log(Data)
+            }
+        })
+
+        datetable = $("#tabla").DataTable({
+
+            responsive: true,
+            ordering: false,
+            "ajax": {
+                url: '@Url.Action("ListarUsuarios","Home")',
+                type: "GET",
+                datatype: "json"
+            },
+            "columns": [
+                { data : 'Nombres'},
+                { data: 'Apellidos' },
+                { data: 'Email' },
+                {
+                    data: 'Activo', 'render': function (valorBool) {
+
+                        if (valorBool) {
+                            return '<span class="badge bg-primary">SI</span>'
+                        } else {
+                            return '<span class="badge bg-danger">NO</span>'
+                        }
+                    }
+                    
+                },
+                 {
+                    "defaultContent": '<button type="button" class="btn btn-primary btn-sm"><i class="fas fa-pen"></i></button>' +
+                        '<button type="button" class="btn btn-danger btn-sm ms-2"><i class="fas fa-trash"></i></button>',
+                    "orderable": false,
+                    "searchable": false,
+                    "width":"7rem",
+                }
+                
+            ]
+
+        });// al la tabla con id=tabla se le agrega el estilo de la tabla de bootstraps
+
+
+
+
+    </script>
+    
+    }
 

@@ -22,13 +22,15 @@ namespace Sistema_Web_De_Ventas_ADMIN.Controllers
             return View();
         }
 
+
+        [HttpGet]//url que devuelve datos Httppost es caudno pedis y te devuelve
         public JsonResult ListarUsuarios()
         {
             List<Usuario> mLista = new List<Usuario>();
 
             mLista = new Cn_Usuarios().Listar();
 
-            return Json(mLista, JsonRequestBehavior.AllowGet);
+            return Json( new { data = mLista }, JsonRequestBehavior.AllowGet);
         }
 
 

@@ -13,3 +13,4 @@ namespace Datos
         public static string cn = ConfigurationManager.ConnectionStrings["Conexion"].ToString();
     }
 }
+ 
